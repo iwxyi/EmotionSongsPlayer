@@ -50,6 +50,7 @@ signals:
 
 public slots:
     void searchNetListByType(QString type);
+    void getRandomSongListInResult();
     void getNetList(QString id);
     void downloadNetSong(QString id);
     QString prepareNextSong();

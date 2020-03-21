@@ -25,6 +25,9 @@ void NeteaseGetter::searchNetListByType(QString type)
         if (result.length() < 100)
             NETEASE_DEB result;
         songList_list = decodeSongListList(result);
+        // 清空则取消非当前类型的播放列表
+//        current_songList = SongList();
+//        next_song = Song();
 
         if (songList_list.size() == 0)
         {
@@ -33,11 +36,18 @@ void NeteaseGetter::searchNetListByType(QString type)
         }
 
         // 随机获取一个歌单（下一个准备播放的）
-        int index = rand() % songList_list.size();
-        current_songList = songList_list.at(index);
-        NETEASE_DEB "下载随机歌单" << current_songList.name << current_songList.id;
-        getNetList(current_songList.id);
+        getRandomSongListInResult();
     });
+}
+
+void NeteaseGetter::getRandomSongListInResult()
+{
+    if (songList_list.size() == 0)
+        return ;
+    int index = rand() % songList_list.size();
+    current_songList = songList_list.at(index);
+    NETEASE_DEB "下载随机歌单" << current_songList.name << current_songList.id;
+    getNetList(current_songList.id);
 }
 
 void NeteaseGetter::getNetList(QString id)
@@ -49,6 +59,24 @@ void NeteaseGetter::getNetList(QString id)
         if (result.length() < 100)
             NETEASE_DEB result;
         current_songList = decodeSongList(result);
+
+        // 如果这个歌单是空的，重新换一个下载
+        if (current_songList.songs.size() == 0)
+        {
+            // 移除这个无效的
+            for (int i = 0; i < songList_list.size(); i++)
+            {
+                if (songList_list.at(i).id == current_songList.id)
+                {
+                    songList_list.removeAt(i);
+                    break;
+                }
+            }
+
+            // 重新换一个
+            getRandomSongListInResult();
+            return ;
+        }
 
         prepareNextSong(); // 可能是初次准备，也可能是提前准备下一首歌
     });
@@ -95,6 +123,8 @@ QString NeteaseGetter::prepareNextSong()
         return "";
     }
 
+    if (current_songList.songs.size() == 0)
+        return "";
     int index = rand() % current_songList.songs.size();
     next_song = current_songList.songs.at(index);
     NETEASE_DEB "下载随机歌曲" << next_song.name << next_song.id;
