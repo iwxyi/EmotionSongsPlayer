@@ -53,6 +53,7 @@ public slots:
     void downloadNetSong(QString id);
     QString prepareNextSong();
     QString getNextSong();
+    void isCurrentOrNext(QString id);
 
 private:
     QList<SongList> decodeSongListList(QString result);

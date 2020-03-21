@@ -2,7 +2,7 @@
 
 NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent), data_dir("musics/")
 {
-
+    srand(time(0));
 }
 
 void NeteaseGetter::setDataDir(QString path)
@@ -17,6 +17,8 @@ void NeteaseGetter::searchNetListByType(QString type)
     QString url = NeteaseAPI::getSongListSearchUrl(type);
     connect(new NetUtil(url), &NetUtil::finished, this, [=](QString result) {
         NETEASE_DEB "搜索结果" << QString::number(result.length());
+        if (result.length() < 100)
+            NETEASE_DEB result;
         songList_list = decodeSongListList(result);
 
         if (songList_list.size() == 0)
@@ -39,6 +41,8 @@ void NeteaseGetter::getNetList(QString id)
     QString url = NeteaseAPI::getSongListUrl(id);
     connect(new NetUtil(url), &NetUtil::finished, this, [=](QString result) {
         NETEASE_DEB "搜索结果" << QString::number(result.length());
+        if (result.length() < 100)
+            NETEASE_DEB result;
         current_songList = decodeSongList(result);
     });
 }
@@ -109,6 +113,21 @@ QString NeteaseGetter::getNextSong()
     return "";
 }
 
+/**
+ * 如果下载完毕，直接播放时
+ * 判断是当前歌曲还是下一首歌
+ */
+void NeteaseGetter::isCurrentOrNext(QString id)
+{
+    if (current_song.id == id) // 正在播放当前歌曲，没事
+        return ;
+    else if (next_song.id == id) // 如果已经开始了下一首歌
+    {
+        current_song = next_song;
+        next_song = Song();
+    }
+}
+
 QList<SongList> NeteaseGetter::decodeSongListList(QString result)
 {
     QList<SongList> songList_list;
@@ -162,7 +181,7 @@ SongList NeteaseGetter::decodeSongList(QJsonObject object)
     songList.description = object.value("description").toString();
     songList.creator_nickname = object.value("creator").toObject().value("nickname").toString();
 
-    NETEASE_DEB songList.name << songList.id << songList.creator_nickname;
+//    NETEASE_DEB songList.name << songList.id << songList.creator_nickname;
 
     return songList;
 }
@@ -209,7 +228,7 @@ Song NeteaseGetter::decodeSong(QJsonObject object)
     song.name = object.value("name").toString();
     song.ar_name = object.value("artists").toObject().value("name").toString();
 
-    NETEASE_DEB song.name << song.id << song.ar_name;
+//    NETEASE_DEB song.name << song.id << song.ar_name;
 
     return song;
 }

@@ -1,12 +1,12 @@
 #include "neteaseplayer.h"
 
-NeteasePlayer::NeteasePlayer(QObject *parent) : QObject(parent), _flag_nexting(false)
+NeteasePlayer::NeteasePlayer(QObject *parent) : QObject(parent), _flag_nexting(false), _flag_prepaired_next(false), _prepair_duration(0)
 {
     musics = new NeteaseGetter(this);
     player = new QMediaPlayer(this);
 
     connect(musics, &NeteaseGetter::signalDownloadFinished, this, [=](QString id) {
-        qDebug() << "收到下载结束信号";
+        NETEASE_DEB "收到下载结束信号";
         if (player->state() != QMediaPlayer::PlayingState) // 没有正在播放
         {
             NETEASE_DEB "当前没有播放，直接开始播放";
@@ -14,14 +14,34 @@ NeteasePlayer::NeteasePlayer(QObject *parent) : QObject(parent), _flag_nexting(f
                 return ;
             QTimer::singleShot(1000, [=]{
                 playerPlay(id);
+                musics->isCurrentOrNext(id);
             });
         }
     });
-    connect(player, &QMediaPlayer::stateChanged, this, [=](QMediaPlayer::State state) {
-        qDebug() << "----StateChanged" << state;
-        if (state == QMediaPlayer::StoppedState) // 播放结束
+
+    connect(player, &QMediaPlayer::durationChanged, this, [=](qint64 dur) {
+        // 音乐时长（毫秒）
+        // 由此提前一段时间下载下一首歌曲
+        if (dur == 0) // 会遇见这种情况（可能是关闭音乐？）
         {
-            NETEASE_DEB "播放结束，下一首";
+            _prepair_duration = 0;
+            return ;
+        }
+        _prepair_duration = dur - PREPAIR_NEXT_SONG_AHEAD;
+        NETEASE_DEB "durationChanged" << dur << _prepair_duration;
+    });
+    connect(player, &QMediaPlayer::positionChanged, this, [=](qint64 pos) {
+        if (player->duration() == 0) // 不知道是啥原因
+            return ;
+        if (pos >= _prepair_duration && !_flag_prepaired_next)
+        {
+            NETEASE_DEB "提前准备" << pos << _prepair_duration;
+            musics->prepareNextSong();
+            _flag_prepaired_next = true;
+        }
+        if (pos >= player->duration()) // 播放结束
+        {
+            NETEASE_DEB "播放结束" << pos << player->duration();
             next();
         }
     });
@@ -98,6 +118,7 @@ void NeteasePlayer::playerPlay(QString id)
     if (isFileExist(path))
     {
         player->setMedia(QUrl::fromLocalFile(path));
+        _flag_prepaired_next = false;
         player->play();
     }
 }

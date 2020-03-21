@@ -6,6 +6,8 @@
 #include <QTimer>
 #include "neteasegetter.h"
 
+#define PREPAIR_NEXT_SONG_AHEAD 30000
+
 class NeteasePlayer : public QObject
 {
     Q_OBJECT
@@ -34,6 +36,8 @@ private:
     QString data_dir;
 
     bool _flag_nexting; // 是否正在下一个（设置媒体会触发 State=Stop，从而误触播放完毕事件）
+    bool _flag_prepaired_next;
+    qint64 _prepair_duration;
 };
 
 #endif // NETEASEPLAYER_H
