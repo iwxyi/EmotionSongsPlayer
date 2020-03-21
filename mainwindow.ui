@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>338</width>
-    <height>178</height>
+    <width>419</width>
+    <height>182</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,6 +38,13 @@
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="pushButton_6">
+        <property name="text">
+         <string>播放</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QPushButton" name="pushButton_2">
         <property name="text">
@@ -75,7 +82,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>338</width>
+     <width>419</width>
      <height>23</height>
     </rect>
    </property>

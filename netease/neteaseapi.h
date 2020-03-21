@@ -36,7 +36,8 @@ public:
      */
     static inline QString getSongDownloadUrl(QString id)
     {
-        return "https://v1.itooi.cn/netease/url?id="+id+"&quality=flac";
+//        return "https://v1.itooi.cn/netease/url?id="+id+"&quality=flac";
+        return "https://v1.itooi.cn/netease/url?id="+id;
     }
 };
 

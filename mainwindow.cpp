@@ -54,3 +54,8 @@ void MainWindow::on_pushButton_4_clicked()
 {
     qDebug() << player->information();
 }
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    player->play();
+}

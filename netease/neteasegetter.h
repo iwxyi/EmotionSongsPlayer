@@ -8,8 +8,9 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
-#include "netutil.h"
 #include "neteaseapi.h"
+#include "netutil.h"
+#include "fileutil.h"
 
 #define NETEASE_DEB if (1) qDebug()<<
 
@@ -46,7 +47,8 @@ signals:
 public slots:
     void searchNetListByType(QString type);
     void getNetList(QString id);
-    void getNetSong(QString id);
+    void downloadNetSong(QString id);
+    QString downloadNextRandom();
 
 private:
     QList<SongList> decodeSongListList(QString result);
@@ -58,7 +60,7 @@ private:
     QString type;
     QList<SongList> songList_list; // 歌单列表
     SongList current_songList; // 歌单（歌曲列表）
-    Song current_song;
+    Song current_song, next_song;
 };
 
 #endif // NETEASEGETTER_H

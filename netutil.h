@@ -82,6 +82,13 @@ public:
         return path;
     }
 
+    static NetUtil* downloadOnce(QString uri, QString path)
+    {
+        NetUtil* net = new NetUtil;
+        net->download(uri, path);
+        return net;
+    }
+
     static QStringList extractList(QString text, QString pat)
     {
         QRegExp rx(pat);
@@ -190,6 +197,9 @@ qDebug() << "网址 post ：" << uri << data;
         });
     }
 
+    /**
+     * 注意：这个函数，不是一次性的，需要手动释放
+     */
     void download(QString uri, QString path)
     {
         QNetworkAccessManager* manager = new QNetworkAccessManager;
@@ -226,8 +236,6 @@ qDebug() << "网址 post ：" << uri << data;
             manager->deleteLater();
         });
     }
-
-
 
 signals:
     void progress(qint64, qint64);

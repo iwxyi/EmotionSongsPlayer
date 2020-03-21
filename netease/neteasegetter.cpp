@@ -38,10 +38,36 @@ void NeteaseGetter::getNetList(QString id)
     });
 }
 
-void NeteaseGetter::getNetSong(QString id)
+void NeteaseGetter::downloadNetSong(QString id)
 {
     NETEASE_DEB "开始下载歌曲"+id;
+    QString url = NeteaseAPI::getSongDownloadUrl(id);
+    NETEASE_DEB url;
+    ensureDirExist("musics");
+    if (isFileExist("music/" + id + ".mp3") || id.isEmpty())
+    {
+        return ;
+    }
+    NetUtil* net = new NetUtil;
+    net->download(url, "musics/" + id + ".mp3");
+    connect(net, &NetUtil::finished, this, [=](QString result) {
+        qDebug() << "下载完毕" << result;
+    });
+}
 
+QString NeteaseGetter::downloadNextRandom()
+{
+    if (current_songList.songs.size() == 0)
+    {
+        qDebug() << "没有歌单";
+        return "";
+    }
+
+    int index = rand() % songList_list.size();
+    next_song = current_songList.songs.at(index);
+    NETEASE_DEB "下载随机歌曲" << current_song.name << current_song.id;
+    downloadNetSong(next_song.id);
+    return next_song.id;
 }
 
 QList<SongList> NeteaseGetter::decodeSongListList(QString result)

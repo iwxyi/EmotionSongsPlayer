@@ -19,14 +19,16 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     netease/neteasegetter.cpp \
-    netease/neteaseplayer.cpp
+    netease/neteaseplayer.cpp \
+    fileutil.cpp
 
 HEADERS += \
     mainwindow.h \
     netease/neteaseapi.h \
     netease/neteasegetter.h \
     netease/neteaseplayer.h \
-    netutil.h
+    netutil.h \
+    fileutil.h
 
 INCLUDEPATH += \
     netease
