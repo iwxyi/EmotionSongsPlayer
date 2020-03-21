@@ -36,6 +36,7 @@ struct SongList {
 class NeteaseGetter : public QObject
 {
     Q_OBJECT
+    friend class NeteasePlayer;
 public:
     NeteaseGetter(QObject *parent = nullptr);
 
@@ -43,19 +44,21 @@ signals:
     void signalNoSongs(QString type);
 
 public slots:
-    void searchListByType(QString type);
-    void getList(QString id);
-    void getSong(QString id);
+    void searchNetListByType(QString type);
+    void getNetList(QString id);
+    void getNetSong(QString id);
 
 private:
     QList<SongList> decodeSongListList(QString result);
     SongList decodeSongList(QJsonObject object);
+    SongList decodeSongList(QString result);
+    Song decodeSong(QJsonObject object);
 
 private:
     QString type;
     QList<SongList> songList_list; // 歌单列表
-    QList<Song> songList; // 歌单（歌曲列表）
-    Song song;
+    SongList current_songList; // 歌单（歌曲列表）
+    Song current_song;
 };
 
 #endif // NETEASEGETTER_H

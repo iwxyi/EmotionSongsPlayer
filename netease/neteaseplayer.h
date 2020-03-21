@@ -21,6 +21,8 @@ public slots:
 
 private:
     NeteaseGetter* musics;
+
+    QString current_type; // 当前类型，如果和 music 的 type 不一样，则重新获取（提前）
 };
 
 #endif // NETEASEPLAYER_H

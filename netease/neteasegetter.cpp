@@ -5,23 +5,42 @@ NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent)
 
 }
 
-void NeteaseGetter::searchListByType(QString type)
+void NeteaseGetter::searchNetListByType(QString type)
 {
-    NETEASE_DEB "开始搜索"+type;
+    NETEASE_DEB "开始搜索："+type;
+    this->type = type;
     QString url = NeteaseAPI::getSongListSearchUrl(type);
     connect(new NetUtil(url), &NetUtil::finished, this, [=](QString result) {
         NETEASE_DEB "搜索结果" << QString::number(result.length());
         songList_list = decodeSongListList(result);
+
+        if (songList_list.size() == 0)
+        {
+            qDebug() << "未搜索到分类";
+            return ;
+        }
+
+        // 随机获取一个歌单（下一个准备播放的）
+        int index = rand() % songList_list.size();
+        current_songList = songList_list.at(index);
+        NETEASE_DEB "下载随机歌单" << current_songList.name << current_songList.id;
+        getNetList(current_songList.id);
     });
 }
 
-void NeteaseGetter::getList(QString id)
+void NeteaseGetter::getNetList(QString id)
 {
-
+    NETEASE_DEB "获取歌单："+id;
+    QString url = NeteaseAPI::getSongListUrl(id);
+    connect(new NetUtil(url), &NetUtil::finished, this, [=](QString result) {
+        NETEASE_DEB "搜索结果" << QString::number(result.length());
+        current_songList = decodeSongList(result);
+    });
 }
 
-void NeteaseGetter::getSong(QString id)
+void NeteaseGetter::getNetSong(QString id)
 {
+    NETEASE_DEB "开始下载歌曲"+id;
 
 }
 
@@ -29,7 +48,7 @@ QList<SongList> NeteaseGetter::decodeSongListList(QString result)
 {
     QList<SongList> songList_list;
 
-    // 解析搜索结果（歌单里面随机取一个）
+    // 解析搜索结果
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(result.toUtf8(), &error);
     if (doc.isNull() || error.error != QJsonParseError::NoError)
@@ -83,3 +102,49 @@ SongList NeteaseGetter::decodeSongList(QJsonObject object)
     return songList;
 }
 
+SongList NeteaseGetter::decodeSongList(QString result)
+{
+    QJsonParseError error;
+    QJsonDocument doc = QJsonDocument::fromJson(result.toUtf8(), &error);
+    SongList songList;
+    if (doc.isNull() || error.error != QJsonParseError::NoError)
+    {
+        qDebug() << "搜索结果解析错误" << error.error << error.errorString();
+        return songList;
+    }
+    if (!doc.isObject())
+    {
+        qDebug() << "搜索结果不是对象";
+        return songList;
+    }
+    QJsonObject object = doc.object();
+    if (!object.contains("data"))
+    {
+        qDebug() << "搜索结果没有 data";
+        return songList;
+    }
+    QJsonObject data = object.value("data").toObject();
+
+    songList.id = QString::number(object.value("id").toInt());
+    songList.name = data.value("name").toString();
+    songList.description = data.value("description").toString();
+    songList.creator_nickname = data.value("creator").toObject().value("nickname").toString();
+    QJsonArray tracks = data.value("tracks").toArray();
+    foreach (QJsonValue value, tracks)
+    {
+        songList.songs.append(decodeSong(value.toObject()));
+    }
+    return songList;
+}
+
+Song NeteaseGetter::decodeSong(QJsonObject object)
+{
+    Song song;
+    song.id = QString::number(object.value("id").toInt());
+    song.name = object.value("name").toString();
+    song.ar_name = object.value("artists").toObject().value("name").toString();
+
+    NETEASE_DEB song.name << song.id << song.ar_name;
+
+    return song;
+}
