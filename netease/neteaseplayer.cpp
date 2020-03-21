@@ -36,7 +36,15 @@ NeteasePlayer::NeteasePlayer(QObject *parent) : QObject(parent), _flag_nexting(f
         if (pos >= _prepair_duration && !_flag_prepaired_next)
         {
             NETEASE_DEB "提前准备" << pos << _prepair_duration;
-            musics->prepareNextSong();
+            if (current_type != musics->getType()) // 类型已经改变了，重新获取列表
+            {
+                NETEASE_DEB "类型已经改变" << musics->getType() << ">>" << current_type;
+                musics->searchNetListByType(current_type);
+            }
+            else // 同一个类型的，准备下一首
+            {
+                musics->prepareNextSong();
+            }
             _flag_prepaired_next = true;
         }
         if (pos >= player->duration()) // 播放结束
@@ -55,7 +63,16 @@ void NeteasePlayer::setDataDir(QString path)
 
 void NeteasePlayer::randomPlay(QString type)
 {
+    current_type = type;
     musics->searchNetListByType(type);
+}
+
+void NeteasePlayer::setType(QString type)
+{
+    NETEASE_DEB "设置为：" << type;
+    current_type = type;
+    if (musics->getType().isEmpty()) // 如果是初次设置，获取对应的歌曲
+        musics->searchNetListByType(type);
 }
 
 /**
@@ -120,5 +137,12 @@ void NeteasePlayer::playerPlay(QString id)
         player->setMedia(QUrl::fromLocalFile(path));
         _flag_prepaired_next = false;
         player->play();
+
+        // 延迟检测播放状态
+        QTimer::singleShot(1000, [=]{
+            // 如果不是正在播放中，那么就有可能是播放出错，继续播放下一首歌
+            if (player->state() != QMediaPlayer::PlayingState)
+                next();
+        });
     }
 }

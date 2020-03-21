@@ -42,6 +42,7 @@ public:
     NeteaseGetter(QObject *parent = nullptr);
 
     void setDataDir(QString path);
+    QString getType();
 
 signals:
     void signalNoSongs(QString type);

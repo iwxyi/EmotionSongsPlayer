@@ -60,3 +60,8 @@ void MainWindow::on_pushButton_6_clicked()
 {
     player->play();
 }
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    player->setType(ui->lineEdit->text());
+}

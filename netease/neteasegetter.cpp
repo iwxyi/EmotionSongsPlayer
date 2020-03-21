@@ -10,6 +10,11 @@ void NeteaseGetter::setDataDir(QString path)
     data_dir = path;
 }
 
+QString NeteaseGetter::getType()
+{
+    return this->type;
+}
+
 void NeteaseGetter::searchNetListByType(QString type)
 {
     NETEASE_DEB "开始搜索："+type;
@@ -44,6 +49,8 @@ void NeteaseGetter::getNetList(QString id)
         if (result.length() < 100)
             NETEASE_DEB result;
         current_songList = decodeSongList(result);
+
+        prepareNextSong(); // 可能是初次准备，也可能是提前准备下一首歌
     });
 }
 
@@ -88,7 +95,7 @@ QString NeteaseGetter::prepareNextSong()
         return "";
     }
 
-    int index = rand() % songList_list.size();
+    int index = rand() % current_songList.songs.size();
     next_song = current_songList.songs.at(index);
     NETEASE_DEB "下载随机歌曲" << next_song.name << next_song.id;
     downloadNetSong(next_song.id);
