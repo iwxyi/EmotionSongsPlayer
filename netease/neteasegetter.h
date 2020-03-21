@@ -3,7 +3,15 @@
 
 #include <QObject>
 #include <QDebug>
+#include <QJsonDocument>
+#include <QJsonParseError>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
 #include "netutil.h"
+#include "neteaseapi.h"
+
+#define NETEASE_DEB if (1) qDebug()<<
 
 /**
  * 歌曲信息
@@ -35,8 +43,9 @@ signals:
     void signalNoSongs(QString type);
 
 public slots:
-    void getList(QString type);
-
+    void searchListByType(QString type);
+    void getList(QString id);
+    void getSong(QString id);
 
 private:
     QString type;

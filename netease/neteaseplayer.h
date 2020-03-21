@@ -13,7 +13,7 @@ public:
 signals:
 
 public slots:
-    void randomPlay();
+    void randomPlay(QString type);
     void stop();
     void next();
     void block();

@@ -23,9 +23,10 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
-    netease/NeteaseAPI.h \
+    netease/neteaseapi.h \
     netease/neteasegetter.h \
-    netease/neteaseplayer.h
+    netease/neteaseplayer.h \
+    netutil.h
 
 INCLUDEPATH += \
     netease

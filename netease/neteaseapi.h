@@ -5,6 +5,7 @@
 
 class NeteaseAPI
 {
+public:
     /**
      * 搜索所有歌单
      */

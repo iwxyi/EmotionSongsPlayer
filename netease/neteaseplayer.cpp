@@ -5,9 +5,9 @@ NeteasePlayer::NeteasePlayer(QObject *parent) : QObject(parent)
     musics = new NeteaseGetter(this);
 }
 
-void NeteasePlayer::randomPlay()
+void NeteasePlayer::randomPlay(QString type)
 {
-
+    musics->searchListByType(type);
 }
 
 void NeteasePlayer::stop()

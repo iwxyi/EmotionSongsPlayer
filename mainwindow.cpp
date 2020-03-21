@@ -20,7 +20,7 @@ MainWindow::~MainWindow()
  */
 void MainWindow::on_pushButton_clicked()
 {
-    player->randomPlay();
+    player->randomPlay(ui->lineEdit->text());
 }
 
 /**
