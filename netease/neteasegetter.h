@@ -48,9 +48,14 @@ public slots:
     void getSong(QString id);
 
 private:
+    QList<SongList> decodeSongListList(QString result);
+    SongList decodeSongList(QJsonObject object);
+
+private:
     QString type;
     QList<SongList> songList_list; // 歌单列表
     QList<Song> songList; // 歌单（歌曲列表）
+    Song song;
 };
 
 #endif // NETEASEGETTER_H
