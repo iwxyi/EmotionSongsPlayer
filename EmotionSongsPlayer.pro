@@ -18,11 +18,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    netease/neteasegetter.cpp
+    netease/neteasegetter.cpp \
+    netease/neteaseplayer.cpp
 
 HEADERS += \
     mainwindow.h \
-    netease/neteasegetter.h
+    netease/neteasegetter.h \
+    netease/neteaseplayer.h
 
 INCLUDEPATH += \
     netease

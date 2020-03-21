@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "neteaseplayer.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,5 +29,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    NeteasePlayer* player;
 };
 #endif // MAINWINDOW_H

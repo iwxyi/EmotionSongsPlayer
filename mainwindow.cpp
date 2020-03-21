@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    player = new NeteasePlayer(this);
 }
 
 MainWindow::~MainWindow()
@@ -18,7 +20,7 @@ MainWindow::~MainWindow()
  */
 void MainWindow::on_pushButton_clicked()
 {
-
+    player->randomPlay();
 }
 
 /**
@@ -26,7 +28,7 @@ void MainWindow::on_pushButton_clicked()
  */
 void MainWindow::on_pushButton_2_clicked()
 {
-
+    player->stop();
 }
 
 /**
@@ -34,7 +36,7 @@ void MainWindow::on_pushButton_2_clicked()
  */
 void MainWindow::on_pushButton_3_clicked()
 {
-
+    player->next();
 }
 
 /**
@@ -42,7 +44,7 @@ void MainWindow::on_pushButton_3_clicked()
  */
 void MainWindow::on_pushButton_5_clicked()
 {
-
+    player->block();
 }
 
 /**
@@ -50,5 +52,5 @@ void MainWindow::on_pushButton_5_clicked()
  */
 void MainWindow::on_pushButton_4_clicked()
 {
-
+    qDebug() << player->information();
 }
