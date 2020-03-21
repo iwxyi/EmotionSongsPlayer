@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -23,6 +23,7 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
+    netease/NeteaseAPI.h \
     netease/neteasegetter.h \
     netease/neteaseplayer.h
 
