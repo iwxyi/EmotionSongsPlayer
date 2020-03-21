@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     player = new NeteasePlayer(this);
+    player->setDataDir("musics/");
 }
 
 MainWindow::~MainWindow()

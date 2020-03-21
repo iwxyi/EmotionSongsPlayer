@@ -1,8 +1,13 @@
 #include "neteasegetter.h"
 
-NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent)
+NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent), data_dir("musics/")
 {
 
+}
+
+void NeteaseGetter::setDataDir(QString path)
+{
+    data_dir = path;
 }
 
 void NeteaseGetter::searchNetListByType(QString type)
@@ -44,25 +49,34 @@ void NeteaseGetter::downloadNetSong(QString id)
     NETEASE_DEB "开始下载歌曲："+id << url;
 
     // 判断文件是否已存在
-//    if (isFileExist("music/" + id + ".mp3") || id.isEmpty())
-//        return ;
-    ensureDirExist("musics");
+    if (isFileExist(data_dir + id + ".mp3") || id.isEmpty())
+    {
+        NETEASE_DEB "歌曲已下载";
+        emit signalDownloadFinished(id);
+        return ;
+    }
+    ensureDirExist(data_dir);
 
     NetUtil* net = new NetUtil;
     net->getRedirection(url);
     connect(net, &NetUtil::redirected, this, [=](QString url) {
-        {
-            NetUtil* net = new NetUtil;
-            net->download(url, "musics/" + id + ".mp3");
-            connect(net, &NetUtil::finished, this, [=](QString result) {
-                qDebug() << "下载完毕" << result;
-            });
-        }
+        NETEASE_DEB "真实网址：" << url;
+        NetUtil* net2 = new NetUtil;
+        net2->download(url, data_dir + id + ".mp3");
+        connect(net2, &NetUtil::finished, this, [=](QString result) {
+            NETEASE_DEB "下载完毕:" << result;
+            emit signalDownloadFinished(id);
+            net2->deleteLater();
+        });
         net->deleteLater();
     });
 }
 
-QString NeteaseGetter::downloadNextRandom()
+/**
+ * 准备下一首歌
+ * 就是在当前歌曲快要放完的时候，提前下载，以免断开
+ */
+QString NeteaseGetter::prepareNextSong()
 {
     if (current_songList.songs.size() == 0)
     {
@@ -75,6 +89,24 @@ QString NeteaseGetter::downloadNextRandom()
     NETEASE_DEB "下载随机歌曲" << next_song.name << next_song.id;
     downloadNetSong(next_song.id);
     return next_song.id;
+}
+
+/**
+ * 获取下一首歌，即 next_song
+ * 如果不存在，则返回空，并且下载新的
+ */
+QString NeteaseGetter::getNextSong()
+{
+    if (!next_song.id.isEmpty())
+    {
+        current_song = next_song;
+        next_song = Song(); // 清空这一首
+        return current_song.id;
+    }
+
+    // 不存在下一首歌，开始下载
+    prepareNextSong();
+    return "";
 }
 
 QList<SongList> NeteaseGetter::decodeSongListList(QString result)

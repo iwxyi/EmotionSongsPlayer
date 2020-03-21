@@ -41,14 +41,18 @@ class NeteaseGetter : public QObject
 public:
     NeteaseGetter(QObject *parent = nullptr);
 
+    void setDataDir(QString path);
+
 signals:
     void signalNoSongs(QString type);
+    void signalDownloadFinished(QString id);
 
 public slots:
     void searchNetListByType(QString type);
     void getNetList(QString id);
     void downloadNetSong(QString id);
-    QString downloadNextRandom();
+    QString prepareNextSong();
+    QString getNextSong();
 
 private:
     QList<SongList> decodeSongListList(QString result);
@@ -61,6 +65,7 @@ private:
     QList<SongList> songList_list; // 歌单列表
     SongList current_songList; // 歌单（歌曲列表）
     Song current_song, next_song;
+    QString data_dir;
 };
 
 #endif // NETEASEGETTER_H

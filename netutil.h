@@ -251,7 +251,7 @@ qDebug() << "网址 post ：" << uri << data;
                 if (write_bytes != data.size())
                     qDebug() << "写入文件大小错误" << write_bytes << "/" << data.size();
             }
-
+qDebug() << "文件下载完成";
             emit finished(path);
             reply->deleteLater();
             manager->deleteLater();
