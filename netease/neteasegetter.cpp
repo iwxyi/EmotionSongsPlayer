@@ -40,18 +40,25 @@ void NeteaseGetter::getNetList(QString id)
 
 void NeteaseGetter::downloadNetSong(QString id)
 {
-    NETEASE_DEB "开始下载歌曲"+id;
     QString url = NeteaseAPI::getSongDownloadUrl(id);
-    NETEASE_DEB url;
+    NETEASE_DEB "开始下载歌曲："+id << url;
+
+    // 判断文件是否已存在
+//    if (isFileExist("music/" + id + ".mp3") || id.isEmpty())
+//        return ;
     ensureDirExist("musics");
-    if (isFileExist("music/" + id + ".mp3") || id.isEmpty())
-    {
-        return ;
-    }
+
     NetUtil* net = new NetUtil;
-    net->download(url, "musics/" + id + ".mp3");
-    connect(net, &NetUtil::finished, this, [=](QString result) {
-        qDebug() << "下载完毕" << result;
+    net->getRedirection(url);
+    connect(net, &NetUtil::redirected, this, [=](QString url) {
+        {
+            NetUtil* net = new NetUtil;
+            net->download(url, "musics/" + id + ".mp3");
+            connect(net, &NetUtil::finished, this, [=](QString result) {
+                qDebug() << "下载完毕" << result;
+            });
+        }
+        net->deleteLater();
     });
 }
 
@@ -65,7 +72,7 @@ QString NeteaseGetter::downloadNextRandom()
 
     int index = rand() % songList_list.size();
     next_song = current_songList.songs.at(index);
-    NETEASE_DEB "下载随机歌曲" << current_song.name << current_song.id;
+    NETEASE_DEB "下载随机歌曲" << next_song.name << next_song.id;
     downloadNetSong(next_song.id);
     return next_song.id;
 }

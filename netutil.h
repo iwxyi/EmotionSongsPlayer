@@ -10,6 +10,7 @@
 #include <QUrl>
 #include <QTextCodec>
 #include <QFile>
+#include <QFileInfo>
 #include <initializer_list>
 
 /**
@@ -119,7 +120,7 @@ public:
     }
 
 public:
-    NetUtil() {}
+    NetUtil(QObject* parent = nullptr) : QObject(parent) {}
 
     NetUtil(QString uri)
     {
@@ -198,6 +199,26 @@ qDebug() << "网址 post ：" << uri << data;
     }
 
     /**
+     * 获取http头中的重定向
+     * 用于解决文件下载地址重定向的问题
+     */
+    void getRedirection(QString uri)
+    {
+        QNetworkRequest request;
+        request.setUrl(QUrl(uri));
+        request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/x-www-form-urlencoded"));
+        QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+        QNetworkReply *reply = manager->get(request);
+        QObject::connect(reply, &QNetworkReply::finished, [=]{
+            qDebug() << reply->header(QNetworkRequest::LocationHeader).toString();
+            emit redirected(reply->header(QNetworkRequest::LocationHeader).toString());
+            reply->deleteLater();
+            manager->deleteLater();
+        });
+    }
+
+    /**
      * 注意：这个函数，不是一次性的，需要手动释放
      */
     void download(QString uri, QString path)
@@ -240,6 +261,7 @@ qDebug() << "网址 post ：" << uri << data;
 signals:
     void progress(qint64, qint64);
     void finished(QString);
+    void redirected(QString url);
 };
 
 #endif // NETUTIL_H
