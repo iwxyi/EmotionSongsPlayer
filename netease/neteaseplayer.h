@@ -16,6 +16,12 @@ public:
 
     void setDataDir(QString path);
 
+    void setUseFixed(bool enable);
+    void setUseTypeFixed(bool enable);
+    void addFixedSongList(QString id);
+    void removeFixedSongList(QString id);
+    void addTypeFixedSongList(QString type, QString id);
+    void removeTypeFixedSongList(QString type, QString id);
 
 signals:
 

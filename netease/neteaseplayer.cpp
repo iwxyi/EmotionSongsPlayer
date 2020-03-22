@@ -61,6 +61,36 @@ void NeteasePlayer::setDataDir(QString path)
 
 }
 
+void NeteasePlayer::setUseFixed(bool enable)
+{
+    musics->setUseFixed(enable);
+}
+
+void NeteasePlayer::setUseTypeFixed(bool enable)
+{
+    musics->setUseTypeFixed(enable);
+}
+
+void NeteasePlayer::addFixedSongList(QString id)
+{
+    musics->addFixedSongList(id);
+}
+
+void NeteasePlayer::removeFixedSongList(QString id)
+{
+    musics->removeFixedSongList(id);
+}
+
+void NeteasePlayer::addTypeFixedSongList(QString type, QString id)
+{
+    musics->addTypeFixedSongList(type, id);
+}
+
+void NeteasePlayer::removeTypeFixedSongList(QString type, QString id)
+{
+    musics->removeTypeFixedSongList(type, id);
+}
+
 void NeteasePlayer::randomPlay(QString type)
 {
     current_type = type;

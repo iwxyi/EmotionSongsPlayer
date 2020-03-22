@@ -1,6 +1,6 @@
 #include "neteasegetter.h"
 
-NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent), data_dir("musics/")
+NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent), data_dir("musics/"), use_fixed(false), use_type_fixed(false)
 {
     srand(time(0));
 }
@@ -15,9 +15,14 @@ QString NeteaseGetter::getType()
     return this->type;
 }
 
-void NeteaseGetter::enableFixed(bool enable)
+void NeteaseGetter::setUseFixed(bool enable)
 {
     this->use_fixed = enable;
+}
+
+void NeteaseGetter::setUseTypeFixed(bool enable)
+{
+    use_type_fixed = enable;
 }
 
 void NeteaseGetter::addFixedSongList(QString id)
