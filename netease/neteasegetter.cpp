@@ -15,6 +15,31 @@ QString NeteaseGetter::getType()
     return this->type;
 }
 
+void NeteaseGetter::enableFixed(bool enable)
+{
+    this->use_fixed = enable;
+}
+
+void NeteaseGetter::addFixedSongList(QString id)
+{
+    fixed_songList.append(id);
+}
+
+void NeteaseGetter::removeFixedSongList(QString id)
+{
+    fixed_songList.removeOne(id);
+}
+
+void NeteaseGetter::addTypeFixedSongList(QString type, QString id)
+{
+    type_fixed_songList_map[type].append(id);
+}
+
+void NeteaseGetter::removeTypeFixedSongList(QString type, QString id)
+{
+    type_fixed_songList_map[type].removeOne(id);
+}
+
 void NeteaseGetter::searchNetListByType(QString type)
 {
     NETEASE_DEB "开始搜索："+type;
@@ -63,6 +88,7 @@ void NeteaseGetter::getNetList(QString id)
         // 如果这个歌单是空的，重新换一个下载
         if (current_songList.songs.size() == 0)
         {
+            NETEASE_DEB "当前歌单没有歌曲，换一个";
             // 移除这个无效的
             for (int i = 0; i < songList_list.size(); i++)
             {

@@ -44,6 +44,12 @@ public:
     void setDataDir(QString path);
     QString getType();
 
+    void enableFixed(bool enable);
+    void addFixedSongList(QString id);
+    void removeFixedSongList(QString id);
+    void addTypeFixedSongList(QString type, QString id);
+    void removeTypeFixedSongList(QString type, QString id);
+
 signals:
     void signalNoSongs(QString type);
     void signalDownloadFinished(QString id);
@@ -69,6 +75,11 @@ private:
     SongList current_songList; // 歌单（歌曲列表）
     Song current_song, next_song;
     QString data_dir;
+
+    bool use_fixed;
+    QStringList fixed_songList; // 固定歌单列表（无视类别，只播放这些）
+    QMap<QString, QStringList> type_fixed_songList_map; // 根据类型
+    QStringList black_list; // 黑名单
 };
 
 #endif // NETEASEGETTER_H

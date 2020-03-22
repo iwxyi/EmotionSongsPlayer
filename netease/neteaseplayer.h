@@ -15,6 +15,8 @@ public:
     explicit NeteasePlayer(QObject *parent = nullptr);
 
     void setDataDir(QString path);
+
+
 signals:
 
 public slots:
@@ -37,8 +39,8 @@ private:
     QString data_dir;
 
     bool _flag_nexting; // 是否正在下一个（设置媒体会触发 State=Stop，从而误触播放完毕事件）
-    bool _flag_prepaired_next;
-    qint64 _prepair_duration;
+    bool _flag_prepaired_next; // 是否已经准备下一个了
+    qint64 _prepair_duration; // 播放到这个时间就提前准备下一个
 };
 
 #endif // NETEASEPLAYER_H
