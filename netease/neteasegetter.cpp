@@ -45,6 +45,16 @@ void NeteaseGetter::removeTypeFixedSongList(QString type, QString id)
     type_fixed_songList_map[type].removeOne(id);
 }
 
+void NeteaseGetter::addBlackList(QString b)
+{
+    black_list.append(b);
+}
+
+void NeteaseGetter::removeBlackList(QString b)
+{
+    black_list.removeOne(b);
+}
+
 void NeteaseGetter::searchNetListByType(QString type)
 {
     NETEASE_DEB "开始搜索："+type;

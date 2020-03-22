@@ -50,6 +50,8 @@ public:
     void removeFixedSongList(QString id);
     void addTypeFixedSongList(QString type, QString id);
     void removeTypeFixedSongList(QString type, QString id);
+    void addBlackList(QString b);
+    void removeBlackList(QString b);
 
 signals:
     void signalNoSongs(QString type);

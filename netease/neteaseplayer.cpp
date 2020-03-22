@@ -91,6 +91,16 @@ void NeteasePlayer::removeTypeFixedSongList(QString type, QString id)
     musics->removeTypeFixedSongList(type, id);
 }
 
+void NeteasePlayer::addBlackList(QString b)
+{
+    musics->addBlackList(b);
+}
+
+void NeteasePlayer::removeBlackList(QString b)
+{
+    musics->removeBlackList(b);
+}
+
 void NeteasePlayer::randomPlay(QString type)
 {
     current_type = type;
