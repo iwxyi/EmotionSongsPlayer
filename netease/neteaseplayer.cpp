@@ -61,44 +61,9 @@ void NeteasePlayer::setDataDir(QString path)
 
 }
 
-void NeteasePlayer::setUseFixed(bool enable)
+NeteaseGetter *NeteasePlayer::getGetter()
 {
-    musics->setUseFixed(enable);
-}
-
-void NeteasePlayer::setUseTypeFixed(bool enable)
-{
-    musics->setUseTypeFixed(enable);
-}
-
-void NeteasePlayer::addFixedSongList(QString id)
-{
-    musics->addFixedSongList(id);
-}
-
-void NeteasePlayer::removeFixedSongList(QString id)
-{
-    musics->removeFixedSongList(id);
-}
-
-void NeteasePlayer::addTypeFixedSongList(QString type, QString id)
-{
-    musics->addTypeFixedSongList(type, id);
-}
-
-void NeteasePlayer::removeTypeFixedSongList(QString type, QString id)
-{
-    musics->removeTypeFixedSongList(type, id);
-}
-
-void NeteasePlayer::addBlackList(QString b)
-{
-    musics->addBlackList(b);
-}
-
-void NeteasePlayer::removeBlackList(QString b)
-{
-    musics->removeBlackList(b);
+    return musics;
 }
 
 void NeteasePlayer::randomPlay(QString type)
