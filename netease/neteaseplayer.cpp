@@ -58,7 +58,6 @@ NeteasePlayer::NeteasePlayer(QObject *parent) : QObject(parent), _flag_nexting(f
 void NeteasePlayer::setDataDir(QString path)
 {
     this->data_dir = path;
-
 }
 
 NeteaseGetter *NeteasePlayer::getGetter()

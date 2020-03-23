@@ -15,6 +15,16 @@ QString NeteaseGetter::getType()
     return this->type;
 }
 
+void NeteaseGetter::save()
+{
+
+}
+
+void NeteaseGetter::restore()
+{
+
+}
+
 void NeteaseGetter::setUseFixed(bool enable)
 {
     this->use_fixed = enable;
@@ -43,6 +53,13 @@ void NeteaseGetter::addTypeFixedSongList(QString type, QString id)
 void NeteaseGetter::removeTypeFixedSongList(QString type, QString id)
 {
     type_fixed_songList_map[type].removeOne(id);
+}
+
+void NeteaseGetter::setSearchFormat(QString format)
+{
+    if (format.isEmpty())
+        search_format = "%1";
+    this->search_format = format;
 }
 
 void NeteaseGetter::addBlackList(QString b)
