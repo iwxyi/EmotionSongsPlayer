@@ -1,6 +1,6 @@
 #include "neteasegetter.h"
 
-NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent), data_dir("musics/"), use_fixed(false), use_type_fixed(false)
+NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent), data_dir("musics/"), settings(nullptr), use_fixed(false), use_type_fixed(false)
 {
     srand(time(0));
 }
@@ -8,6 +8,10 @@ NeteaseGetter::NeteaseGetter(QObject *parent) : QObject(parent), data_dir("music
 void NeteaseGetter::setDataDir(QString path)
 {
     data_dir = path;
+
+    if (settings)
+        delete settings;
+    settings = new QSettings("netease");
 }
 
 QString NeteaseGetter::getType()
@@ -17,12 +21,37 @@ QString NeteaseGetter::getType()
 
 void NeteaseGetter::save()
 {
+    if (!settings)
+        return ;
 
+    settings->setValue("fixed/use_fixed", use_fixed);
+    settings->setValue("fixed/use_type_fixed", use_type_fixed);
+    settings->setValue("fixed/songList", fixed_songList);
+    settings->setValue("fixed/type_songList_keys", QStringList(type_fixed_songList_map.keys()));
+    for (auto it = type_fixed_songList_map.begin(); it != type_fixed_songList_map.end(); it++)
+    {
+        settings->setValue("fixed_type/" + it.key(), it.value());
+    }
+    settings->setValue("format/search_format", search_format);
+    settings->setValue("format/black_list", black_list);
 }
 
 void NeteaseGetter::restore()
 {
+    if (!settings)
+        return ;
 
+    use_fixed = settings->value("fixed/use_fixed", use_fixed).toBool();
+    use_type_fixed = settings->value("fixed/use_type_fixed", use_type_fixed).toBool();
+    fixed_songList = settings->value("fixed/songList", fixed_songList).toStringList();
+    QStringList keys = settings->value("fixed/type_songList_keys", QStringList(type_fixed_songList_map.keys())).toStringList();
+    type_fixed_songList_map.clear();
+    foreach (QString key, keys)
+    {
+        type_fixed_songList_map.insert(key, settings->value("fixed_type/"+key, QStringList()).toStringList());
+    }
+    search_format = settings->value("format/search_format", search_format).toString();
+    black_list = settings->value("format/black_list", black_list).toStringList();
 }
 
 void NeteaseGetter::setUseFixed(bool enable)

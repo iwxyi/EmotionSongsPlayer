@@ -8,6 +8,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QJsonValue>
+#include <QSettings>
 #include "neteaseapi.h"
 #include "netutil.h"
 #include "fileutil.h"
@@ -81,7 +82,9 @@ private:
     QList<SongList> songList_list; // 歌单列表
     SongList current_songList; // 歌单（歌曲列表）
     Song current_song, next_song;
+
     QString data_dir;
+    QSettings* settings;
 
     bool use_fixed, use_type_fixed; // 开启则使用固定歌单、类型固定歌单
     QStringList fixed_songList; // 固定歌单列表ids（无视类别，只播放这些）
