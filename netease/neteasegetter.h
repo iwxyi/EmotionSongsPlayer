@@ -88,7 +88,7 @@ private:
 
     bool use_fixed, use_type_fixed; // 开启则使用固定歌单、类型固定歌单
     QStringList fixed_songList; // 固定歌单列表ids（无视类别，只播放这些）
-    QMap<QString, QStringList> type_fixed_songList_map; // 类型固定歌单ids
+    QMap<QString, QStringList> type_fixed_songList_map; // 各类型固定歌单ids
     QString search_format; // 根据Type搜索的格式（默认"%1"）
     QStringList black_list; // 黑名单
 };

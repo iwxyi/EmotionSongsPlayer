@@ -65,6 +65,17 @@ NeteaseGetter *NeteasePlayer::getGetter()
     return musics;
 }
 
+bool NeteasePlayer::isPlaying()
+{
+    return player->state() == QMediaPlayer::PlayingState || player->state() == QMediaPlayer::PausedState;
+}
+
+/**
+ * 加载随机一项
+ * 如果没在播放，就开始播放（下载完毕槽）
+ * 如果正在播放，则播放完当前歌曲
+ * @param type
+ */
 void NeteasePlayer::randomPlay(QString type)
 {
     current_type = type;
@@ -124,11 +135,16 @@ void NeteasePlayer::next()
  */
 void NeteasePlayer::block()
 {
-
+    if (!isPlaying())
+        return ;
+    musics->addBlackList(musics->current_song.id);
+    next();
 }
 
 QString NeteasePlayer::information()
 {
+    if (!isPlaying())
+        return "未开始播放";
     return musics->current_song.name + "  " + musics->current_song.ar_name;
 }
 

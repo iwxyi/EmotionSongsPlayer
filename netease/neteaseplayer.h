@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QMediaPlayer>
 #include <QTimer>
+#include <QSettings>
 #include "neteasegetter.h"
 
 #define PREPAIR_NEXT_SONG_AHEAD 30000
@@ -12,10 +13,12 @@ class NeteasePlayer : public QObject
 {
     Q_OBJECT
 public:
-    explicit NeteasePlayer(QObject *parent = nullptr);
+    NeteasePlayer(QObject *parent = nullptr);
 
     void setDataDir(QString path);
     NeteaseGetter* getGetter();
+
+    bool isPlaying();
 
 signals:
 
