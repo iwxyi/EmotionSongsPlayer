@@ -1,0 +1,550 @@
+// https://v1.itooi.cn/netease/search?keyword=快乐&type=songList
+
+{
+  "code": 200,
+  "msg": "OK",
+  "timestamp": 0,
+  "data": {
+    "playlists": [
+      {
+        "coverImgUrl": "https://p1.music.126.net/FK1xlU3CDoCf3YOQ2lPPOw==/109951164363812738.jpg",
+        "subscribed": false,
+        "playCount": 236227,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "江淮渡寒",
+          "userType": 0,
+          "userId": 1326689604
+        },
+        "trackCount": 1282,
+        "bookCount": 4351,
+        "name": "【快乐源泉】请接收你的沙雕歌单",
+        "description": "【一个沙雕＋神曲/魔性歌单√】\n……慎入\n收录鬼畜，电音，神曲……等\n外放有奇效（。\n\n",
+        "highQuality": false,
+        "id": 2186540164,
+        "userId": 1326689604
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/GlV130UzFe2hEofOpo9k2g==/109951163314358137.jpg",
+        "subscribed": false,
+        "playCount": 260415,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "zhangzhi19",
+          "userType": 0,
+          "userId": 1531492070
+        },
+        "trackCount": 26,
+        "bookCount": 1729,
+        "name": "快乐的小青蛙（CCTV15音乐频道）",
+        "highQuality": false,
+        "id": 2332108981,
+        "userId": 1531492070
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/y-2Op0BD3DpDTdt5ABFZDw==/109951163856530862.jpg",
+        "subscribed": false,
+        "playCount": 149039,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "歡GLAD",
+          "userType": 0,
+          "userId": 1404821806
+        },
+        "trackCount": 104,
+        "bookCount": 1676,
+        "name": "听了就会很欢乐的歌曲嘞",
+        "description": "小烦恼没什么大不了\n请让我看到你翘起来的嘴角\n唱不了的歌就转调\n千万不要自寻烦恼\n小烦恼没什么大不了\n请让我看到你翘起来的嘴角\n不属于你的就不要\n快乐不靠拥有多少\n——《小烦恼没什么大不了》",
+        "highQuality": false,
+        "id": 2664711081,
+        "userId": 1404821806
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/dbNvuphUc_mDSWLzjzT7fA==/5979144232442840.jpg",
+        "subscribed": false,
+        "playCount": 30444,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "吉吉吉吧1808",
+          "userType": 0,
+          "userId": 1560828686
+        },
+        "trackCount": 45,
+        "bookCount": 271,
+        "name": "星爵快乐歌",
+        "highQuality": false,
+        "id": 2799609663,
+        "userId": 1560828686
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/bX1de3tEEdfYPQWZjJnUjw==/109951164056063420.jpg",
+        "subscribed": false,
+        "playCount": 188011,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "Oot-实实在在v",
+          "expertTags": [
+            "日语",
+            "电子"
+          ],
+          "userType": 200,
+          "userId": 426334290,
+          "experts": {
+            "2": "音乐图文达人"
+          }
+        },
+        "trackCount": 67,
+        "bookCount": 2712,
+        "name": "旋律快乐硬核-Happy hardcore",
+        "description": "这里是一些以旋律为主的优质的Happy hardcore音乐\n还有一少部分Powerstomp，UK Hardcore，Makina Hardcore（Mákina Hardcore），Trancecore，J-Core等\n\nPS:The Vividness of Memory (2017 Mix)被下架，单主把The Vividness of Memory搬过来了，还有很多好听的Happycore网易没有版权。\nPID:56385309\n\n最后修改时间:Mar 4,2020\n新增曲目:Dead Point",
+        "highQuality": false,
+        "id": 2760499420,
+        "userId": 426334290
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/FxEPWENmVHoxBByIk9EwUg==/19104014532944728.jpg",
+        "subscribed": false,
+        "playCount": 8932,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "甭想着知道我的昵称",
+          "userType": 0,
+          "userId": 248689086
+        },
+        "trackCount": 47,
+        "bookCount": 66,
+        "name": "快乐儿歌",
+        "highQuality": false,
+        "id": 884521482,
+        "userId": 248689086
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/O6RY1rhK-fLVwNSo0YUKQg==/109951164684653237.jpg",
+        "subscribed": false,
+        "playCount": 13506328,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "命运给过你最好的",
+          "userType": 0,
+          "userId": 314398077
+        },
+        "trackCount": 257,
+        "bookCount": 101989,
+        "name": "抖音歌曲最新2020.03.19（持续更新）",
+        "description": "当你倍感孤独的时候，我也不会带着你离开，\n因为命运会给你最好的安排。每个下雨天或午夜的列车上，每个充满快乐与活力的早晨，这里总有一剂良药。\n所有的音乐都是灵魂的救赎",
+        "highQuality": false,
+        "id": 2623963777,
+        "userId": 314398077
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/5HxBMPgv7K1Rd4XyN-k-HA==/109951163557927732.jpg",
+        "subscribed": false,
+        "playCount": 14648,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "沐枫宇情",
+          "userType": 0,
+          "userId": 1578238426
+        },
+        "trackCount": 234,
+        "bookCount": 164,
+        "name": "快乐风男，哈撒给",
+        "description": "只要我E的够快，队友的问号就跟不上我",
+        "highQuality": false,
+        "id": 2425464393,
+        "userId": 1578238426
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/J6G-_PRMFA0qpi0cDIfDTQ==/109951164391407227.jpg",
+        "subscribed": false,
+        "playCount": 25030,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "起风亚索",
+          "userType": 0,
+          "userId": 107941261
+        },
+        "trackCount": 58,
+        "bookCount": 313,
+        "name": "『英雄联盟』起风快乐亚索",
+        "description": "谢谢大家收藏",
+        "highQuality": false,
+        "id": 391057031,
+        "userId": 107941261
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/L46CWMfGmMkR-1ukznHfrQ==/18505880208768173.jpg",
+        "subscribed": false,
+        "playCount": 24522,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "开始哭还是孤独感",
+          "userType": 0,
+          "userId": 291162496
+        },
+        "trackCount": 69,
+        "bookCount": 735,
+        "name": "轻松快乐旋律学英语，过英语四级单词",
+        "highQuality": false,
+        "id": 2222478352,
+        "userId": 291162496
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/rhH3Mg_ZaTD2PvA-m8QKkw==/18977570695985482.jpg",
+        "subscribed": false,
+        "playCount": 153995,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "从零起步的马孔多",
+          "userType": 0,
+          "userId": 364527705
+        },
+        "trackCount": 1133,
+        "bookCount": 2761,
+        "name": "咸鱼快乐每一天",
+        "description": "不是我不想努力，只是努力的人太多了少了我好像也没有什么",
+        "highQuality": false,
+        "id": 2023759884,
+        "userId": 364527705
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/4FXQUQ0FouXiTYNU77GqaA==/109951163452442014.jpg",
+        "subscribed": false,
+        "playCount": 28390,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "虾滑7",
+          "userType": 0,
+          "userId": 351705896
+        },
+        "trackCount": 818,
+        "bookCount": 118,
+        "name": "快乐当然有一点",
+        "description": "如果有如果 还是没有遗憾。",
+        "highQuality": false,
+        "id": 521808572,
+        "userId": 351705896
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/19Mg6HWOm13ZTrsd0_qkIg==/109951164797270432.jpg",
+        "subscribed": false,
+        "playCount": 203211,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "沈鸿鹤",
+          "userType": 0,
+          "userId": 564269363
+        },
+        "trackCount": 199,
+        "bookCount": 2296,
+        "name": "把快乐放进重点反复背诵.杂歌集",
+        "description": "你像扬州天上的万点繁星 可望不可即 偏偏对你这颗着迷\n别辜负自己。\n《雨声》这首歌建议在失落的时候聆听，下雨的声音会让你感到一丝的舒适，愿每天的你都会开心，记得完成快乐这个作业哦~",
+        "highQuality": false,
+        "id": 2331488580,
+        "userId": 564269363
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/l9ylBGF6CP2eOCa_WDXylw==/109951164271890721.jpg",
+        "subscribed": false,
+        "playCount": 41591,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "跳海避闲",
+          "userType": 0,
+          "userId": 269092421
+        },
+        "trackCount": 724,
+        "bookCount": 281,
+        "name": "快乐的秘诀:停止胡思乱想",
+        "highQuality": false,
+        "id": 553256490,
+        "userId": 269092421
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/5lHqnDL8bhRtVqNpPUySjA==/109951164789032853.jpg",
+        "subscribed": false,
+        "playCount": 29222,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "NanaNoMY",
+          "userType": 0,
+          "userId": 549844641
+        },
+        "trackCount": 1518,
+        "bookCount": 154,
+        "name": "快乐就完事lao",
+        "description": "",
+        "highQuality": false,
+        "id": 823994959,
+        "userId": 549844641
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/YHAU4_BLEpjgOoD_sq_wDg==/109951164190283061.jpg",
+        "subscribed": false,
+        "playCount": 1665505,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "老趣味___",
+          "userType": 0,
+          "userId": 113504608
+        },
+        "trackCount": 1106,
+        "bookCount": 15159,
+        "name": "你不快乐别硬撑了 ​​​",
+        "description": "希望你能做一个快乐的人。",
+        "highQuality": false,
+        "id": 551780450,
+        "userId": 113504608
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/fbcBhX-OOe7EabeIS7SyIw==/109951163765434656.jpg",
+        "subscribed": false,
+        "playCount": 82415,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "孔小白o",
+          "userType": 0,
+          "userId": 542343176
+        },
+        "trackCount": 1184,
+        "bookCount": 1271,
+        "name": "【暂停更新】快乐大本营常用BGM合集",
+        "description": "本人初三 即将中考 暂时停更 莫要催更\n待我考完 也不一定会更 嘻嘻 (♡˙︶˙♡)\n目标静海一中 冲鸭！",
+        "highQuality": false,
+        "id": 1984598926,
+        "userId": 542343176
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/t5b-NMmGu_y2Ht4tSIFaMw==/109951163405062983.jpg",
+        "subscribed": false,
+        "playCount": 322928,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "欲神狂魔",
+          "userType": 0,
+          "userId": 118087643
+        },
+        "trackCount": 174,
+        "bookCount": 4998,
+        "name": "玩亚索的时候一定要听，快乐无极限",
+        "description": "玩亚索输赢不重要，快乐就完事了。\n",
+        "highQuality": false,
+        "id": 2313041236,
+        "userId": 118087643
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/OeMim3SPHh28ccmgzX9Pxw==/109951163050588994.jpg",
+        "subscribed": false,
+        "playCount": 395227,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "I婷婷公主I",
+          "userType": 0,
+          "userId": 352363605
+        },
+        "trackCount": 886,
+        "bookCount": 3048,
+        "name": "分手快乐啊朋友",
+        "description": "绿帽也许会迟到但永远不会缺席",
+        "highQuality": false,
+        "id": 972368171,
+        "userId": 352363605
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/2jzp3Vdwlt54J3bXZo6Sbg==/109951163045596814.jpg",
+        "subscribed": false,
+        "playCount": 33833,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "ZXJ越努力越幸运",
+          "userType": 0,
+          "userId": 357999483
+        },
+        "trackCount": 100,
+        "bookCount": 647,
+        "name": "学习使我快乐，巴洛克加强记忆",
+        "description": "适合学习的音乐",
+        "highQuality": false,
+        "id": 959355050,
+        "userId": 357999483
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/LZLuYGwtk3Ae3OI-V9rnFg==/18498183627917935.jpg",
+        "subscribed": false,
+        "playCount": 59672,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "宇宙无敌靓丽迷人帅气大帅逼南凯",
+          "userType": 0,
+          "userId": 418591310
+        },
+        "trackCount": 36,
+        "bookCount": 1295,
+        "name": "新年快乐！貂蝉战歌（蓝条才是血！！）",
+        "description": "冲冲冲！",
+        "highQuality": false,
+        "id": 2272437325,
+        "userId": 418591310
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/Hb9jBVZEq6P6Nw5v-XDpNA==/18813743465053871.jpg",
+        "subscribed": false,
+        "playCount": 360585,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "壹隻船长",
+          "userType": 0,
+          "userId": 247278756
+        },
+        "trackCount": 130,
+        "bookCount": 2158,
+        "name": "多语种~多风格丨生日快乐丨生日歌丨",
+        "description": "破蛋日~当然需要生日歌~多语种~多风格~生日快乐歌",
+        "highQuality": false,
+        "id": 522703941,
+        "userId": 247278756
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/3z46BrGCsptmQf3BEmzbFA==/109951164375042453.jpg",
+        "subscribed": false,
+        "playCount": 242775,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "爱笑的洋先生啊",
+          "userType": 0,
+          "userId": 270218516
+        },
+        "trackCount": 233,
+        "bookCount": 2429,
+        "name": "都给我快乐起来，好吗？",
+        "description": "世上无她，",
+        "highQuality": false,
+        "id": 2523084626,
+        "userId": 270218516
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/94Vr8aIcGruCLJNRd9M2kA==/3287539768680651.jpg",
+        "subscribed": false,
+        "playCount": 14014,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "神雕侠侣180712",
+          "userType": 0,
+          "userId": 1517843596
+        },
+        "trackCount": 143,
+        "bookCount": 262,
+        "name": "快乐女孩 (动画片《甜心格格》主题曲)",
+        "highQuality": false,
+        "id": 2328651387,
+        "userId": 1517843596
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/Jp6cHcLIstHmi8CuJhT_fg==/109951163767764641.jpg",
+        "subscribed": false,
+        "playCount": 195699,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "Chelsey_____",
+          "userType": 0,
+          "userId": 47643500
+        },
+        "trackCount": 56,
+        "bookCount": 2343,
+        "name": "会上瘾的快乐小调",
+        "description": "快乐的情绪会传染，听好的音乐会上瘾，希望能给你不一样的感受。",
+        "highQuality": false,
+        "id": 101463526,
+        "userId": 47643500
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/VKBVH5QbkrUcaRFOanagaA==/18629025511345832.jpg",
+        "subscribed": false,
+        "playCount": 338249,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "等着一个感动",
+          "userType": 0,
+          "userId": 318817225
+        },
+        "trackCount": 69,
+        "bookCount": 4802,
+        "name": "从前的我快乐过",
+        "highQuality": false,
+        "id": 545734391,
+        "userId": 318817225
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/BVEF21qtm07-OAoaSH30_Q==/109951163722834018.jpg",
+        "subscribed": false,
+        "playCount": 156364,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "最酷的李闪亮_",
+          "userType": 0,
+          "userId": 375093887
+        },
+        "trackCount": 33,
+        "bookCount": 815,
+        "name": "学习使我快乐.",
+        "highQuality": false,
+        "id": 2439720511,
+        "userId": 375093887
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/mf2dBe_1SubcB4jzvoKtlQ==/109951164550474352.jpg",
+        "subscribed": false,
+        "playCount": 27773,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "Ash-Lynx_",
+          "userType": 0,
+          "userId": 386885822
+        },
+        "trackCount": 83,
+        "bookCount": 350,
+        "name": "【一拜天地 广播剧】水三儿秦书，新婚快乐~",
+        "description": "\n你看，台下都充作宾客，你听，喧骂便算是道贺。\n\n“你看，那红灯笼像不像喜烛？”\n“像。”\n“一拜天地！”\n——砰。",
+        "highQuality": false,
+        "id": 2557473995,
+        "userId": 386885822
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/z6ceafq-do4HW8EKJyGZzw==/2791660022961931.jpg",
+        "subscribed": false,
+        "playCount": 445024,
+        "creator": {
+          "authStatus": 1,
+          "nickname": "静听有声工作室FM",
+          "userType": 1,
+          "userId": 372462
+        },
+        "trackCount": 59,
+        "bookCount": 6001,
+        "name": "★抗战三十年:家驹生日快乐★",
+        "description": "你没听过的beyond，怀念偶像。",
+        "highQuality": false,
+        "id": 1523092,
+        "userId": 372462
+      },
+      {
+        "coverImgUrl": "https://p1.music.126.net/e9dcxRy1-X_bZ-9sJfcbQQ==/109951163427872483.jpg",
+        "subscribed": false,
+        "playCount": 45459,
+        "creator": {
+          "authStatus": 0,
+          "nickname": "Eleveny_11",
+          "userType": 0,
+          "userId": 50150872
+        },
+        "trackCount": 225,
+        "bookCount": 784,
+        "name": "快乐可可狮",
+        "highQuality": false,
+        "id": 2437692392,
+        "userId": 50150872
+      }
+    ],
+    "playlistCount": 300
+  }
+}
