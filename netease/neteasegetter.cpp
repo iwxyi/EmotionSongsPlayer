@@ -191,7 +191,23 @@ void NeteaseGetter::downloadNetSong(QString id)
     }
     ensureDirExist(data_dir);
 
-    NetUtil* net = new NetUtil;
+    connect(new NetUtil(url), &NetUtil::finished, this, [=](QString result) {
+        QString durl = NetUtil::extractOne("\"url\":\"", "\"");
+        if (durl.isEmpty())
+        {
+            getNextSong(); // 下载失败，播放下一首
+            return ;
+        }
+        NetUtil* net2 = new NetUtil;
+        net2->download(durl, data_dir + id + ".mp3");
+        connect(net2, &NetUtil::finished, this, [=](QString result) {
+            NETEASE_DEB "下载完毕:" << result;
+            emit signalDownloadFinished(id);
+            net2->deleteLater();
+        });
+    });
+
+    /*NetUtil* net = new NetUtil;
     net->getRedirection(url);
     connect(net, &NetUtil::redirected, this, [=](QString url) {
         NETEASE_DEB "真实网址：" << url;
@@ -203,7 +219,7 @@ void NeteaseGetter::downloadNetSong(QString id)
             net2->deleteLater();
         });
         net->deleteLater();
-    });
+    });*/
 }
 
 /**
@@ -265,6 +281,7 @@ QList<SongList> NeteaseGetter::decodeSongListList(QString result)
     QList<SongList> songList_list;
 
     // 解析搜索结果
+    // 因为是一开始的API尝试连接，所以报错内容尽量准确吧
     QJsonParseError error;
     QJsonDocument doc = QJsonDocument::fromJson(result.toUtf8(), &error);
     if (doc.isNull() || error.error != QJsonParseError::NoError)
@@ -278,12 +295,12 @@ QList<SongList> NeteaseGetter::decodeSongListList(QString result)
         return songList_list;
     }
     QJsonObject object = doc.object();
-    if (!object.contains("data"))
+    if (!object.contains("result"))
     {
-        qDebug() << "搜索结果没有 data";
+        qDebug() << "搜索结果没有 result";
         return songList_list;
     }
-    QJsonObject data = object.value("data").toObject();
+    QJsonObject data = object.value("result").toObject();
     if (!data.contains("playlists") || data.value("playlists").type() != QJsonValue::Array)
     {
         qDebug() << "playlists 出错";
@@ -334,12 +351,12 @@ SongList NeteaseGetter::decodeSongList(QString result)
         return songList;
     }
     QJsonObject object = doc.object();
-    if (!object.contains("data"))
+    if (!object.contains("playlist"))
     {
-        qDebug() << "搜索结果没有 data";
+        qDebug() << "搜索结果没有 playlist";
         return songList;
     }
-    QJsonObject data = object.value("data").toObject();
+    QJsonObject data = object.value("playlist").toObject();
 
     songList.id = QString::number(object.value("id").toInt());
     songList.name = data.value("name").toString();
@@ -358,7 +375,7 @@ Song NeteaseGetter::decodeSong(QJsonObject object)
     Song song;
     song.id = QString::number(object.value("id").toInt());
     song.name = object.value("name").toString();
-    song.ar_name = object.value("artists").toObject().value("name").toString();
+    song.ar_name = object.value("ar").toObject().value("name").toString();
 
 //    NETEASE_DEB song.name << song.id << song.ar_name;
 
