@@ -192,9 +192,12 @@ void NeteaseGetter::downloadNetSong(QString id)
     ensureDirExist(data_dir);
 
     connect(new NetUtil(url), &NetUtil::finished, this, [=](QString result) {
-        QString durl = NetUtil::extractOne("\"url\":\"", "\"");
+        QString durl = NetUtil::extractOne(result, "\"url\":\"(.+?)\"");
+        NETEASE_DEB "歌曲地址" << durl;
+
         if (durl.isEmpty())
         {
+            NETEASE_DEB "找不到下载地址";
             getNextSong(); // 下载失败，播放下一首
             return ;
         }

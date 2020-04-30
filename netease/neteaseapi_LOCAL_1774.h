@@ -3,7 +3,7 @@
 
 #include <QString>
 
-#define NETEASE_DOMAIN QString("http://49.235.46.194:3000/")
+#define NETEASE_DOMAIN "49.235.46.194:3000/netease/"
 
 class NeteaseAPI
 {

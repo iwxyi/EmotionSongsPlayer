@@ -7,6 +7,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QRegularExpression>
 #include <QUrl>
 #include <QTextCodec>
 #include <QFile>
@@ -92,9 +93,10 @@ public:
 
     static QStringList extractList(QString text, QString pat)
     {
-        QRegExp rx(pat);
-        if (text.indexOf(rx))
-            return rx.capturedTexts();
+        QRegularExpression rx(pat);
+        QRegularExpressionMatch match;
+        if (text.indexOf(rx, 0, &match))
+            return match.capturedTexts();
         else
             return QStringList();
     }
@@ -108,6 +110,9 @@ public:
             return QString();
     }
 
+    /**
+     * 用来提取括号第一个
+     */
     static QString extractOne(QString text, QString pat)
     {
         QStringList list = extractList(text, pat);

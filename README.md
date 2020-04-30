@@ -12,4 +12,4 @@ Qt-分类音乐播放插件
 
 
 
-![](/pictures/picture.jpg)
+![截图](/pictures/picture.jpg)

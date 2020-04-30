@@ -3,7 +3,7 @@
 
 #include <QString>
 
-#define NETEASE_DOMAIN QString("http://49.235.46.194:3000/")
+#define NETEASE_DOMAIN "49.235.46.194:3000/netease/"
 
 class NeteaseAPI
 {
@@ -42,8 +42,12 @@ public:
      */
     static inline QString getSongDownloadUrl(QString id)
     {
+<<<<<<< Updated upstream
 //        return "https://v1.itooi.cn/netease/url?id="+id;
         return NETEASE_DOMAIN + "song/url?id=" + id;
+=======
+        return "https://v1.itooi.cn/netease/url?id="+id;
+>>>>>>> Stashed changes
     }
 };
 
